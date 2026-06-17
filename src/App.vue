@@ -30,12 +30,12 @@ const skillGroups = ref([
   {
     title: 'Frontend',
     icon: Code2,
-    skills: ['Vue 3', 'Composition API', 'Tailwind CSS', 'JavaScript', 'RWD'],
+    skills: ['Vue 3', 'HTML', 'CSS', 'JavaScript', 'RWD'],
   },
   {
     title: 'Database',
     icon: Database,
-    skills: ['SQL Server', 'MySQL', '資料表設計', '查詢優化', '交易控制'],
+    skills: ['SQL Server', '資料表設計', '查詢優化', '交易控制'],
   },
   {
     title: 'DevOps',
@@ -90,9 +90,9 @@ const experiences = ref([
 ])
 
 const contactLinks = ref([
-  { label: 'GitHub', href: 'https://github.com/', icon: Github },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/', icon: Linkedin },
-  { label: 'Email', href: 'mailto:your.email@example.com', icon: Mail },
+  { label: 'GitHub', href: 'https://github.com/sagartia', icon: Github },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/shu-yu-yang-44a598417', icon: Linkedin },
+  { label: 'Email', href: 'shuyu020515@gmail.com', icon: Mail },
 ])
 </script>
 
@@ -292,9 +292,6 @@ const contactLinks = ref([
       <div class="mx-auto max-w-3xl text-center">
         <BriefcaseBusiness class="mx-auto size-10 text-emerald-300" />
         <h2 class="mt-5 text-3xl font-bold text-white sm:text-4xl">期待與你交流</h2>
-        <p class="mt-5 leading-8 text-zinc-400">
-          如果你正在尋找願意持續學習、能把需求拆成清楚流程並落實到程式碼的初階工程師，歡迎與我聯絡。
-        </p>
         <div class="mt-8 flex justify-center gap-3">
           <a
             v-for="link in contactLinks"
