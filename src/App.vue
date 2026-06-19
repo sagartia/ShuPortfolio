@@ -13,7 +13,6 @@ import {
   Server,
   Sun,
   Terminal,
-  Zap,
 } from 'lucide-vue-next'
 import { ref, watch, onMounted, onUnmounted } from 'vue'
 
@@ -78,14 +77,14 @@ const projects = ref([
   {
     name: '個人履歷與作品集網站',
     summary: '以 Vue 3 建立的響應式個人網站，用來整理技術能力、專題成果與轉職經歷。',
-    techs: ['Vue 3', 'JavaScript', 'Tailwind CSS', 'Vite', 'Netlify'],
+    techs: ['Vue 3', 'JavaScript', 'Tailwind CSS', 'Vite', 'Cloudflare Pages'],
     highlights: [
       '使用 Composition API 與資料陣列管理技能、專案和經歷內容',
       '完成手機與桌面版響應式排版，並支援深色與淺色模式',
-      '串接 GitHub 自動部署至 Netlify，持續更新個人作品內容',
+      '串接 GitHub 自動部署至 Cloudflare Pages，持續更新個人作品內容',
     ],
     github: 'https://github.com/sagartia/ShuPortfolio',
-    demo: 'https://shuyu-portfolio.netlify.app/',
+    demo: 'https://shuportfolio.pages.dev/',
   },
 ])
 
@@ -162,7 +161,7 @@ const contactLinks = ref([
             <a
               href="#contact"
               class="text-sm px-4 py-2 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/20 transition-colors"
-            >Hire Me</a>
+            >Contact Me</a>
           </li>
         </ul>
 
@@ -419,7 +418,7 @@ const contactLinks = ref([
       <section id="contact" class="py-24 px-6 bg-gray-50 dark:bg-gray-900/30">
         <div class="max-w-2xl mx-auto text-center">
           <p class="text-xs font-semibold tracking-widest text-emerald-600 dark:text-emerald-500 uppercase mb-2">Contact</p>
-          <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">期待與你交流</h2>
+          <!-- <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">期待與你交流</h2> -->
           <p class="text-gray-500 text-lg mb-10">
             目前尋找 Junior Java 後端或全端工程師職缺。<br />
             如果你想進一步了解我的專題與學習經歷，歡迎透過 Email、LinkedIn 或 GitHub 與我聯絡。
@@ -430,7 +429,6 @@ const contactLinks = ref([
             class="inline-flex items-center gap-3 px-8 py-4 bg-emerald-500 hover:bg-emerald-400 text-white font-bold rounded-xl text-lg transition-colors mb-12"
           >
             <Mail :size="20" aria-hidden="true" />
-            shuyu020515@gmail.com
           </a>
 
           <div class="flex items-center justify-center gap-6">
@@ -455,7 +453,7 @@ const contactLinks = ref([
     </main>
 
     <footer class="py-8 px-6 border-t border-gray-200 dark:border-gray-800/60 text-center text-sm text-gray-400 dark:text-gray-600">
-      <p>Built with Vue 3 &amp; Tailwind CSS · Deployed on Netlify</p>
+      <p>Built with Vue 3 &amp; Tailwind CSS · Deployed on Cloudflare Pages</p>
     </footer>
 
   </div>
