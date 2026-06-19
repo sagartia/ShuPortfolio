@@ -20,7 +20,7 @@ const navItems = [
   { label: 'about', href: '#about' },
   { label: 'projects', href: '#projects' },
   { label: 'experience', href: '#experience' },
-  { label: 'contact', href: '#contact' },
+  // { label: 'contact', href: '#contact' },
 ]
 
 const scrolled = ref(false)
@@ -231,12 +231,12 @@ const contactLinks = ref([
               View Projects
               <ArrowRight :size="16" aria-hidden="true" />
             </a>
-            <a
+            <!-- <a
               href="#contact"
               class="inline-flex items-center gap-2 px-6 py-3 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-100 font-semibold rounded-lg border border-gray-200 dark:border-gray-700 transition-colors"
             >
               Contact Me
-            </a>
+            </a> -->
           </div>
 
           <div class="flex items-center gap-6 mt-12 text-sm text-gray-400 dark:text-gray-500">
