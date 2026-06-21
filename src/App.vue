@@ -3,9 +3,12 @@ import {
   ArrowRight,
   Calendar,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   Code2,
   Database,
   ExternalLink,
+  Images,
   Mail,
   MapPin,
   Menu,
@@ -13,8 +16,9 @@ import {
   Server,
   Sun,
   Terminal,
+  X,
 } from 'lucide-vue-next'
-import { ref, watch, onMounted, onUnmounted } from 'vue'
+import { computed, ref, watch, onMounted, onUnmounted } from 'vue'
 
 const navItems = [
   { label: 'about', href: '#about' },
@@ -25,8 +29,52 @@ const navItems = [
 
 const scrolled = ref(false)
 const onScroll = () => { scrolled.value = window.scrollY > 10 }
-onMounted(() => window.addEventListener('scroll', onScroll))
-onUnmounted(() => window.removeEventListener('scroll', onScroll))
+
+const previewProject = ref(null)
+const previewIndex = ref(0)
+const activePreviewImage = computed(() => previewProject.value?.previewImages?.[previewIndex.value])
+
+const openPreview = (project, index = 0) => {
+  previewProject.value = project
+  previewIndex.value = index
+}
+
+const closePreview = () => {
+  previewProject.value = null
+  previewIndex.value = 0
+}
+
+const showPreviousPreview = () => {
+  const total = previewProject.value?.previewImages?.length ?? 0
+  if (total) previewIndex.value = (previewIndex.value - 1 + total) % total
+}
+
+const showNextPreview = () => {
+  const total = previewProject.value?.previewImages?.length ?? 0
+  if (total) previewIndex.value = (previewIndex.value + 1) % total
+}
+
+const onKeydown = (event) => {
+  if (!previewProject.value) return
+  if (event.key === 'Escape') closePreview()
+  if (event.key === 'ArrowLeft') showPreviousPreview()
+  if (event.key === 'ArrowRight') showNextPreview()
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', onScroll)
+  window.addEventListener('keydown', onKeydown)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', onScroll)
+  window.removeEventListener('keydown', onKeydown)
+  document.body.style.overflow = ''
+})
+
+watch(previewProject, (project) => {
+  document.body.style.overflow = project ? 'hidden' : ''
+})
 
 const isDark = ref(
   localStorage.getItem('theme') === 'dark' ||
@@ -41,7 +89,7 @@ const skillGroups = ref([
   {
     title: 'Backend',
     icon: Server,
-    skills: ['Java', 'Spring Boot', 'Spring MVC', 'Spring Security', 'Hibernate', 'RESTful API'],
+    skills: ['Java', 'Spring Boot', 'Spring MVC', 'Spring Security', 'Spring AI', 'Hibernate', 'RESTful API'],
   },
   {
     title: 'Frontend',
@@ -51,12 +99,12 @@ const skillGroups = ref([
   {
     title: 'Database',
     icon: Database,
-    skills: ['SQL Server', '資料表設計', 'JPA / ORM', '交易控制', '資料一致性'],
+    skills: ['SQL Server', 'ChromaDB', '資料表設計', 'JPA / ORM', '交易控制', '資料一致性'],
   },
   {
     title: 'Tools',
     icon: Terminal,
-    skills: ['Git', 'GitHub', 'Docker 基礎', 'Linux CLI', 'VS Code'],
+    skills: ['Git', 'GitHub', 'GitHub Models', 'Docker 基礎', 'Linux CLI', 'VS Code'],
   },
 ])
 
@@ -73,6 +121,59 @@ const projects = ref([
     ],
     github: 'https://github.com/sagartia',
     demo: null,
+    previewImages: [
+      {
+        src: '/projects/ecommerce-project/ecommerce-1.png',
+        alt: '電商平台專案 預覽照'
+      },
+      {
+        src: '/projects/ecommerce-project/ecommerce-2.png',
+        alt: '電商平台專案 預覽照'
+      },
+      {
+        src: '/projects/ecommerce-project/ecommerce-3.png',
+        alt: '電商平台專案 預覽照'
+      },
+      {
+        src: '/projects/ecommerce-project/ecommerce-4.png',
+        alt: '電商平台專案 預覽照'
+      },
+      {
+        src: '/projects/ecommerce-project/ecommerce-5.png',
+        alt: '電商平台專案 預覽照'
+      },
+      {
+        src: '/projects/ecommerce-project/ecommerce-6.png',
+        alt: '電商平台專案 預覽照'
+      },
+      {
+        src: '/projects/ecommerce-project/ecommerce-7.png',
+        alt: '電商平台專案 預覽照'
+      },
+    ],
+  },
+  {
+    name: 'AI 面試教練｜RAG 專案',
+    summary: '依目標職位產生技術面試題，回答後即時取得分數、優缺點與參考答案重點。',
+    techs: ['Java 21', 'Spring Boot', 'Spring AI', 'ChromaDB', 'Vue 3', 'GPT-4.1-nano'],
+    highlights: [
+      '使用 ChromaDB 向量檢索題庫，依職位與題目取得相關內容',
+      '透過 Spring AI 串接 GitHub Models 的 GPT-4.1-nano 與 Embedding 模型',
+      '實作 0–100 分評分、優缺點分析、參考答案與連續多題流程',
+      '以 Vue 3 製作面試對話介面，支援 Ctrl + Enter 快速送出回答',
+    ],
+    github: 'https://github.com/sagartia/interview-coach',
+    demo: null,
+    previewImages: [
+      {
+        src: '/projects/ai-interview-coach/interview-question-and-score.png',
+        alt: 'AI 面試教練顯示 Java 面試題、使用者回答與即時評分',
+      },
+      {
+        src: '/projects/ai-interview-coach/interview-feedback-and-next-question.png',
+        alt: 'AI 面試教練顯示回答缺點、參考答案重點與下一題',
+      },
+    ],
   },
   {
     name: '個人履歷與作品集網站',
@@ -335,6 +436,27 @@ const contactLinks = ref([
                 </div>
               </div>
 
+              <button
+                v-if="project.previewImages?.length"
+                type="button"
+                class="group/preview relative mb-5 block aspect-video w-full overflow-hidden rounded-lg border border-gray-200 bg-gray-950 text-left dark:border-gray-800"
+                :aria-label="`查看 ${project.name} 的成果預覽`"
+                @click="openPreview(project)"
+              >
+                <img
+                  :src="project.previewImages[0].src"
+                  :alt="project.previewImages[0].alt"
+                  class="h-full w-full object-cover object-top transition-transform duration-300 group-hover/preview:scale-[1.02]"
+                />
+                <span class="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gray-950/85 px-4 py-3 text-sm text-white backdrop-blur-sm">
+                  <span class="flex items-center gap-2 font-medium">
+                    <Images :size="16" aria-hidden="true" />
+                    查看成果預覽
+                  </span>
+                  <span class="text-xs text-gray-300">{{ project.previewImages.length }} 張</span>
+                </span>
+              </button>
+
               <p class="text-gray-500 dark:text-gray-500 text-sm mb-4">{{ project.summary }}</p>
 
               <div class="flex flex-wrap gap-2 mb-5">
@@ -455,6 +577,79 @@ const contactLinks = ref([
     <footer class="py-8 px-6 border-t border-gray-200 dark:border-gray-800/60 text-center text-sm text-gray-400 dark:text-gray-600">
       <p>Built with Vue 3 &amp; Tailwind CSS · Deployed on Cloudflare Pages</p>
     </footer>
+
+    <Teleport to="body">
+      <div
+        v-if="previewProject && activePreviewImage"
+        class="fixed inset-0 z-[100] flex flex-col bg-gray-950/95 p-4 backdrop-blur-sm sm:p-6"
+        role="dialog"
+        aria-modal="true"
+        :aria-label="`${previewProject.name} 成果預覽`"
+        @click.self="closePreview"
+      >
+        <div class="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 pb-4 text-white">
+          <div class="min-w-0">
+            <p class="truncate font-semibold">{{ previewProject.name }}</p>
+            <p class="mt-1 text-xs text-gray-400">
+              {{ previewIndex + 1 }} / {{ previewProject.previewImages.length }}
+            </p>
+          </div>
+          <button
+            type="button"
+            class="grid size-10 shrink-0 place-items-center rounded-lg border border-white/15 text-gray-300 transition-colors hover:border-emerald-400 hover:text-white"
+            aria-label="關閉成果預覽"
+            title="關閉"
+            @click="closePreview"
+          >
+            <X :size="20" aria-hidden="true" />
+          </button>
+        </div>
+
+        <div class="relative mx-auto flex min-h-0 w-full max-w-6xl flex-1 items-center justify-center">
+          <button
+            v-if="previewProject.previewImages.length > 1"
+            type="button"
+            class="absolute left-0 z-10 grid size-10 place-items-center rounded-lg border border-white/15 bg-gray-950/80 text-white transition-colors hover:border-emerald-400 sm:left-3"
+            aria-label="上一張成果圖"
+            title="上一張"
+            @click="showPreviousPreview"
+          >
+            <ChevronLeft :size="22" aria-hidden="true" />
+          </button>
+
+          <img
+            :src="activePreviewImage.src"
+            :alt="activePreviewImage.alt"
+            class="max-h-full max-w-full rounded-lg object-contain shadow-2xl shadow-black/50"
+          />
+
+          <button
+            v-if="previewProject.previewImages.length > 1"
+            type="button"
+            class="absolute right-0 z-10 grid size-10 place-items-center rounded-lg border border-white/15 bg-gray-950/80 text-white transition-colors hover:border-emerald-400 sm:right-3"
+            aria-label="下一張成果圖"
+            title="下一張"
+            @click="showNextPreview"
+          >
+            <ChevronRight :size="22" aria-hidden="true" />
+          </button>
+        </div>
+
+        <div class="mx-auto flex w-full max-w-6xl justify-center gap-3 pt-4">
+          <button
+            v-for="(image, index) in previewProject.previewImages"
+            :key="image.src"
+            type="button"
+            class="h-14 w-14 overflow-hidden rounded-lg border-2 bg-gray-900 transition-colors sm:h-16 sm:w-16"
+            :class="index === previewIndex ? 'border-emerald-400' : 'border-transparent hover:border-white/40'"
+            :aria-label="`查看第 ${index + 1} 張成果圖`"
+            @click="previewIndex = index"
+          >
+            <img :src="image.src" :alt="image.alt" class="h-full w-full object-cover object-top" />
+          </button>
+        </div>
+      </div>
+    </Teleport>
 
   </div>
 </template>
