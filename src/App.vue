@@ -115,7 +115,7 @@ const projects = ref([
     techs: ['Spring Boot', 'Spring Security', 'Hibernate', 'SQL Server', 'Vue.js'],
     highlights: [
       '負責購物車、優惠券、結帳與訂單模組，完成跨模組購買流程',
-      '設計並實作 15 支 RESTful API，與 Vue 前端完成資料串接',
+      '設計並實作 25 支 RESTful API，與 Vue 前端完成資料串接',
       '使用 @Transactional 維持結帳、庫存扣減與訂單建立的資料一致性',
       '整合 Spring Security，限制未登入使用者操作購物車與結帳功能',
     ],
@@ -239,49 +239,40 @@ const contactLinks = ref([
   <div class="bg-white text-gray-900 antialiased dark:bg-gray-950 dark:text-gray-100 transition-colors duration-300">
 
     <!-- Header -->
-    <header
-      class="fixed top-0 inset-x-0 z-50 transition-all duration-300"
-      :class="scrolled
-        ? 'bg-white/95 dark:bg-gray-950/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800/50'
-        : 'bg-transparent'"
-    >
+    <header class="fixed top-0 inset-x-0 z-50 transition-all duration-300" :class="scrolled
+      ? 'bg-white/95 dark:bg-gray-950/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800/50'
+      : 'bg-transparent'">
       <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#hero" class="flex items-center gap-2 font-bold text-emerald-500 dark:text-emerald-400 tracking-tight text-lg">
+        <a href="#hero"
+          class="flex items-center gap-2 font-bold text-emerald-500 dark:text-emerald-400 tracking-tight text-lg">
           <Terminal :size="20" aria-hidden="true" />
           <span>Shu<span class="text-gray-900 dark:text-gray-100">.dev</span></span>
         </a>
 
         <ul class="hidden md:flex items-center gap-8">
           <li v-for="item in navItems" :key="item.href">
-            <a
-              :href="item.href"
-              class="text-sm text-gray-500 hover:text-emerald-500 dark:text-gray-400 dark:hover:text-emerald-400 transition-colors capitalize"
-            >{{ item.label }}</a>
+            <a :href="item.href"
+              class="text-sm text-gray-500 hover:text-emerald-500 dark:text-gray-400 dark:hover:text-emerald-400 transition-colors capitalize">{{
+                item.label }}</a>
           </li>
           <li>
-            <a
-              href="#contact"
-              class="text-sm px-4 py-2 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/20 transition-colors"
-            >Contact Me</a>
+            <a href="#contact"
+              class="text-sm px-4 py-2 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/20 transition-colors">Contact
+              Me</a>
           </li>
         </ul>
 
         <div class="flex items-center gap-3">
           <!-- Dark / Light toggle -->
-          <button
-            @click="isDark = !isDark"
-            class="relative flex h-6 w-11 items-center rounded-full border transition-colors duration-300"
-            :class="isDark
+          <button @click="isDark = !isDark"
+            class="relative flex h-6 w-11 items-center rounded-full border transition-colors duration-300" :class="isDark
               ? 'bg-gray-700 border-gray-600 hover:border-emerald-500/50'
               : 'bg-gray-200 border-gray-300 hover:border-emerald-500/50'"
-            :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
-          >
-            <span
-              class="absolute flex h-5 w-5 items-center justify-center rounded-full transition-all duration-300"
+            :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'">
+            <span class="absolute flex h-5 w-5 items-center justify-center rounded-full transition-all duration-300"
               :class="isDark
                 ? 'left-[1px] bg-gray-500'
-                : 'left-[21px] bg-emerald-400'"
-            >
+                : 'left-[21px] bg-emerald-400'">
               <Moon v-if="isDark" :size="11" class="text-gray-200" />
               <Sun v-else :size="11" class="text-white" />
             </span>
@@ -290,8 +281,7 @@ const contactLinks = ref([
           <!-- Mobile menu button -->
           <button
             class="md:hidden text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
-            aria-label="Toggle menu"
-          >
+            aria-label="Toggle menu">
             <Menu :size="22" aria-hidden="true" />
           </button>
         </div>
@@ -303,12 +293,17 @@ const contactLinks = ref([
       <!-- Hero -->
       <section id="hero" class="relative min-h-screen flex flex-col justify-center px-6 pt-16 overflow-hidden">
         <!-- grid background -->
-        <div class="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-60 dark:opacity-20 pointer-events-none"></div>
+        <div
+          class="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-60 dark:opacity-20 pointer-events-none">
+        </div>
         <!-- glow -->
-        <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div
+          class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-3xl pointer-events-none">
+        </div>
 
         <div class="relative max-w-6xl mx-auto w-full">
-          <div class="inline-flex items-center gap-2 text-xs text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full mb-6">
+          <div
+            class="inline-flex items-center gap-2 text-xs text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full mb-6">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
             Seeking junior Java backend opportunities
           </div>
@@ -325,10 +320,8 @@ const contactLinks = ref([
           </p>
 
           <div class="flex flex-wrap gap-4">
-            <a
-              href="#projects"
-              class="inline-flex items-center gap-2 px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-white font-semibold rounded-lg transition-colors"
-            >
+            <a href="#projects"
+              class="inline-flex items-center gap-2 px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-white font-semibold rounded-lg transition-colors">
               View Projects
               <ArrowRight :size="16" aria-hidden="true" />
             </a>
@@ -358,7 +351,8 @@ const contactLinks = ref([
       <!-- About & Skills -->
       <section id="about" class="py-24 px-6">
         <div class="max-w-6xl mx-auto">
-          <p class="text-xs font-semibold tracking-widest text-emerald-600 dark:text-emerald-500 uppercase mb-2">About &amp; Skills</p>
+          <p class="text-xs font-semibold tracking-widest text-emerald-600 dark:text-emerald-500 uppercase mb-2">About
+            &amp; Skills</p>
           <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-gray-100">從資料檢核走向軟體開發</h2>
 
           <div class="grid md:grid-cols-2 gap-12 mb-16">
@@ -375,21 +369,16 @@ const contactLinks = ref([
           </div>
 
           <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div
-              v-for="group in skillGroups"
-              :key="group.title"
-              class="bg-gray-50 border border-gray-200 dark:bg-gray-900 dark:border-gray-800 rounded-xl p-5 hover:border-emerald-500/30 transition-colors"
-            >
+            <div v-for="group in skillGroups" :key="group.title"
+              class="bg-gray-50 border border-gray-200 dark:bg-gray-900 dark:border-gray-800 rounded-xl p-5 hover:border-emerald-500/30 transition-colors">
               <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 mb-4 font-semibold text-sm">
                 <component :is="group.icon" :size="16" aria-hidden="true" />
                 {{ group.title }}
               </div>
               <div class="flex flex-wrap gap-2">
-                <span
-                  v-for="skill in group.skills"
-                  :key="skill"
-                  class="text-xs px-2 py-1 bg-white border border-gray-200 text-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 rounded-md"
-                >{{ skill }}</span>
+                <span v-for="skill in group.skills" :key="skill"
+                  class="text-xs px-2 py-1 bg-white border border-gray-200 text-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 rounded-md">{{
+                    skill }}</span>
               </div>
             </div>
           </div>
@@ -399,56 +388,46 @@ const contactLinks = ref([
       <!-- Projects -->
       <section id="projects" class="py-24 px-6 bg-gray-50 dark:bg-gray-900/30">
         <div class="max-w-6xl mx-auto">
-          <p class="text-xs font-semibold tracking-widest text-emerald-600 dark:text-emerald-500 uppercase mb-2">Side Projects</p>
+          <p class="text-xs font-semibold tracking-widest text-emerald-600 dark:text-emerald-500 uppercase mb-2">Side
+            Projects</p>
           <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">實作專案</h2>
           <p class="text-gray-400 dark:text-gray-500 mb-12 text-lg">以實際開發成果呈現後端流程設計、前後端串接與持續學習紀錄。</p>
 
           <div class="grid md:grid-cols-2 gap-6">
-            <div
-              v-for="project in projects"
-              :key="project.name"
-              class="group bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-800 rounded-xl p-6 hover:border-emerald-500/40 transition-all duration-300"
-            >
+            <div v-for="project in projects" :key="project.name"
+              class="group bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-800 rounded-xl p-6 hover:border-emerald-500/40 transition-all duration-300">
               <div class="flex items-start justify-between mb-3">
-                <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 group-hover:text-emerald-500 dark:group-hover:text-emerald-400 transition-colors">
+                <h3
+                  class="text-lg font-bold text-gray-900 dark:text-gray-100 group-hover:text-emerald-500 dark:group-hover:text-emerald-400 transition-colors">
                   {{ project.name }}
                 </h3>
                 <div class="flex items-center gap-3 ml-4">
-                  <a
-                    :href="project.github"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <a :href="project.github" target="_blank" rel="noopener noreferrer"
                     class="text-gray-400 hover:text-emerald-500 dark:text-gray-500 dark:hover:text-emerald-400 transition-colors"
-                    aria-label="GitHub"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                    aria-label="GitHub">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      aria-hidden="true">
+                      <path
+                        d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                      <path d="M9 18c-4.51 2-5-2-7-2" />
+                    </svg>
                   </a>
-                  <a
-                    v-if="project.demo"
-                    :href="project.demo"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <a v-if="project.demo" :href="project.demo" target="_blank" rel="noopener noreferrer"
                     class="text-gray-400 hover:text-emerald-500 dark:text-gray-500 dark:hover:text-emerald-400 transition-colors"
-                    aria-label="Live Demo"
-                  >
+                    aria-label="Live Demo">
                     <ExternalLink :size="18" aria-hidden="true" />
                   </a>
                 </div>
               </div>
 
-              <button
-                v-if="project.previewImages?.length"
-                type="button"
+              <button v-if="project.previewImages?.length" type="button"
                 class="group/preview relative mb-5 block aspect-video w-full overflow-hidden rounded-lg border border-gray-200 bg-gray-950 text-left dark:border-gray-800"
-                :aria-label="`查看 ${project.name} 的成果預覽`"
-                @click="openPreview(project)"
-              >
-                <img
-                  :src="project.previewImages[0].src"
-                  :alt="project.previewImages[0].alt"
-                  class="h-full w-full object-cover object-top transition-transform duration-300 group-hover/preview:scale-[1.02]"
-                />
-                <span class="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gray-950/85 px-4 py-3 text-sm text-white backdrop-blur-sm">
+                :aria-label="`查看 ${project.name} 的成果預覽`" @click="openPreview(project)">
+                <img :src="project.previewImages[0].src" :alt="project.previewImages[0].alt"
+                  class="h-full w-full object-cover object-top transition-transform duration-300 group-hover/preview:scale-[1.02]" />
+                <span
+                  class="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gray-950/85 px-4 py-3 text-sm text-white backdrop-blur-sm">
                   <span class="flex items-center gap-2 font-medium">
                     <Images :size="16" aria-hidden="true" />
                     查看成果預覽
@@ -460,19 +439,13 @@ const contactLinks = ref([
               <p class="text-gray-500 dark:text-gray-500 text-sm mb-4">{{ project.summary }}</p>
 
               <div class="flex flex-wrap gap-2 mb-5">
-                <span
-                  v-for="tech in project.techs"
-                  :key="tech"
-                  class="text-xs px-2 py-0.5 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 rounded-md"
-                >{{ tech }}</span>
+                <span v-for="tech in project.techs" :key="tech"
+                  class="text-xs px-2 py-0.5 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 rounded-md">{{
+                    tech }}</span>
               </div>
 
               <ul class="space-y-1.5">
-                <li
-                  v-for="h in project.highlights"
-                  :key="h"
-                  class="flex items-start gap-2 text-xs text-gray-500"
-                >
+                <li v-for="h in project.highlights" :key="h" class="flex items-start gap-2 text-xs text-gray-500">
                   <span class="text-emerald-500 mt-0.5 shrink-0">›</span>
                   {{ h }}
                 </li>
@@ -485,21 +458,23 @@ const contactLinks = ref([
       <!-- Experience -->
       <section id="experience" class="py-24 px-6">
         <div class="max-w-4xl mx-auto">
-          <p class="text-xs font-semibold tracking-widest text-emerald-600 dark:text-emerald-500 uppercase mb-2">Experience</p>
+          <p class="text-xs font-semibold tracking-widest text-emerald-600 dark:text-emerald-500 uppercase mb-2">
+            Experience</p>
           <h2 class="text-3xl md:text-4xl font-bold mb-12 text-gray-900 dark:text-gray-100">經歷與學習歷程</h2>
 
           <div class="relative">
-            <div class="absolute left-0 top-2 bottom-2 w-px bg-gradient-to-b from-emerald-500 via-emerald-500/30 to-transparent hidden md:block"></div>
+            <div
+              class="absolute left-0 top-2 bottom-2 w-px bg-gradient-to-b from-emerald-500 via-emerald-500/30 to-transparent hidden md:block">
+            </div>
 
             <div class="space-y-12">
-              <div
-                v-for="item in experiences"
-                :key="item.title"
-                class="md:pl-10 relative"
-              >
-                <div class="absolute left-[-4.5px] top-1.5 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-white dark:border-gray-950 hidden md:block"></div>
+              <div v-for="item in experiences" :key="item.title" class="md:pl-10 relative">
+                <div
+                  class="absolute left-[-4.5px] top-1.5 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-white dark:border-gray-950 hidden md:block">
+                </div>
 
-                <div class="bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-800 rounded-xl p-6 hover:border-emerald-500/30 transition-colors">
+                <div
+                  class="bg-white border border-gray-200 dark:bg-gray-900 dark:border-gray-800 rounded-xl p-6 hover:border-emerald-500/30 transition-colors">
                   <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
                     <div>
                       <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100">{{ item.title }}</h3>
@@ -520,11 +495,8 @@ const contactLinks = ref([
                   <p class="text-gray-500 text-sm mb-4 leading-relaxed">{{ item.summary }}</p>
 
                   <ul class="space-y-1.5">
-                    <li
-                      v-for="h in item.highlights"
-                      :key="h"
-                      class="flex items-start gap-2 text-xs text-gray-500 dark:text-gray-400"
-                    >
+                    <li v-for="h in item.highlights" :key="h"
+                      class="flex items-start gap-2 text-xs text-gray-500 dark:text-gray-400">
                       <span class="text-emerald-500 mt-0.5 shrink-0">✓</span>
                       {{ h }}
                     </li>
@@ -539,31 +511,30 @@ const contactLinks = ref([
       <!-- Contact -->
       <section id="contact" class="py-24 px-6 bg-gray-50 dark:bg-gray-900/30">
         <div class="max-w-2xl mx-auto text-center">
-          <p class="text-xs font-semibold tracking-widest text-emerald-600 dark:text-emerald-500 uppercase mb-2">Contact</p>
+          <p class="text-xs font-semibold tracking-widest text-emerald-600 dark:text-emerald-500 uppercase mb-2">Contact
+          </p>
           <!-- <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">期待與你交流</h2> -->
           <p class="text-gray-500 text-lg mb-10">
             目前尋找 Junior Java 後端或全端工程師職缺。<br />
             如果你想進一步了解我的專題與學習經歷，歡迎透過 Email 或 GitHub 與我聯絡。
           </p>
 
-          <a
-            href="mailto:shuyu020515@gmail.com"
-            class="inline-flex items-center gap-3 px-8 py-4 bg-emerald-500 hover:bg-emerald-400 text-white font-bold rounded-xl text-lg transition-colors mb-12"
-          >
-            <Mail :size="20" aria-hidden="true" />
+          <a href="mailto:shuyu020515@gmail.com"
+            class="inline-flex items-center gap-3 px-8 py-4 bg-emerald-500 hover:bg-emerald-400 text-white font-bold rounded-xl text-lg transition-colors mb-12">
+            <Mail :size="20" aria-hidden="true" />shuyu020515@gmail.com
           </a>
 
           <div class="flex items-center justify-center gap-6">
-            <a
-              v-for="link in contactLinks"
-              :key="link.label"
-              :href="link.href"
-              target="_blank"
-              rel="noopener noreferrer"
-              :aria-label="link.label"
-              class="flex items-center gap-2 text-gray-400 hover:text-emerald-500 dark:text-gray-500 dark:hover:text-emerald-400 transition-colors text-sm"
-            >
-              <svg v-if="link.type === 'github'" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+            <a v-for="link in contactLinks" :key="link.label" :href="link.href" target="_blank"
+              rel="noopener noreferrer" :aria-label="link.label"
+              class="flex items-center gap-2 text-gray-400 hover:text-emerald-500 dark:text-gray-500 dark:hover:text-emerald-400 transition-colors text-sm">
+              <svg v-if="link.type === 'github'" xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <path
+                  d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                <path d="M9 18c-4.51 2-5-2-7-2" />
+              </svg>
               <!-- <svg v-else-if="link.type === 'linkedin'" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg> -->
               <Mail v-else :size="22" aria-hidden="true" />
               <span>{{ link.label }}</span>
@@ -574,19 +545,15 @@ const contactLinks = ref([
 
     </main>
 
-    <footer class="py-8 px-6 border-t border-gray-200 dark:border-gray-800/60 text-center text-sm text-gray-400 dark:text-gray-600">
+    <footer
+      class="py-8 px-6 border-t border-gray-200 dark:border-gray-800/60 text-center text-sm text-gray-400 dark:text-gray-600">
       <p>Built with Vue 3 &amp; Tailwind CSS · Deployed on Cloudflare Pages</p>
     </footer>
 
     <Teleport to="body">
-      <div
-        v-if="previewProject && activePreviewImage"
-        class="fixed inset-0 z-[100] flex flex-col bg-gray-950/95 p-4 backdrop-blur-sm sm:p-6"
-        role="dialog"
-        aria-modal="true"
-        :aria-label="`${previewProject.name} 成果預覽`"
-        @click.self="closePreview"
-      >
+      <div v-if="previewProject && activePreviewImage"
+        class="fixed inset-0 z-[100] flex flex-col bg-gray-950/95 p-4 backdrop-blur-sm sm:p-6" role="dialog"
+        aria-modal="true" :aria-label="`${previewProject.name} 成果預覽`" @click.self="closePreview">
         <div class="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 pb-4 text-white">
           <div class="min-w-0">
             <p class="truncate font-semibold">{{ previewProject.name }}</p>
@@ -594,57 +561,35 @@ const contactLinks = ref([
               {{ previewIndex + 1 }} / {{ previewProject.previewImages.length }}
             </p>
           </div>
-          <button
-            type="button"
+          <button type="button"
             class="grid size-10 shrink-0 place-items-center rounded-lg border border-white/15 text-gray-300 transition-colors hover:border-emerald-400 hover:text-white"
-            aria-label="關閉成果預覽"
-            title="關閉"
-            @click="closePreview"
-          >
+            aria-label="關閉成果預覽" title="關閉" @click="closePreview">
             <X :size="20" aria-hidden="true" />
           </button>
         </div>
 
         <div class="relative mx-auto flex min-h-0 w-full max-w-6xl flex-1 items-center justify-center">
-          <button
-            v-if="previewProject.previewImages.length > 1"
-            type="button"
+          <button v-if="previewProject.previewImages.length > 1" type="button"
             class="absolute left-0 z-10 grid size-10 place-items-center rounded-lg border border-white/15 bg-gray-950/80 text-white transition-colors hover:border-emerald-400 sm:left-3"
-            aria-label="上一張成果圖"
-            title="上一張"
-            @click="showPreviousPreview"
-          >
+            aria-label="上一張成果圖" title="上一張" @click="showPreviousPreview">
             <ChevronLeft :size="22" aria-hidden="true" />
           </button>
 
-          <img
-            :src="activePreviewImage.src"
-            :alt="activePreviewImage.alt"
-            class="max-h-full max-w-full rounded-lg object-contain shadow-2xl shadow-black/50"
-          />
+          <img :src="activePreviewImage.src" :alt="activePreviewImage.alt"
+            class="max-h-full max-w-full rounded-lg object-contain shadow-2xl shadow-black/50" />
 
-          <button
-            v-if="previewProject.previewImages.length > 1"
-            type="button"
+          <button v-if="previewProject.previewImages.length > 1" type="button"
             class="absolute right-0 z-10 grid size-10 place-items-center rounded-lg border border-white/15 bg-gray-950/80 text-white transition-colors hover:border-emerald-400 sm:right-3"
-            aria-label="下一張成果圖"
-            title="下一張"
-            @click="showNextPreview"
-          >
+            aria-label="下一張成果圖" title="下一張" @click="showNextPreview">
             <ChevronRight :size="22" aria-hidden="true" />
           </button>
         </div>
 
         <div class="mx-auto flex w-full max-w-6xl justify-center gap-3 pt-4">
-          <button
-            v-for="(image, index) in previewProject.previewImages"
-            :key="image.src"
-            type="button"
+          <button v-for="(image, index) in previewProject.previewImages" :key="image.src" type="button"
             class="h-14 w-14 overflow-hidden rounded-lg border-2 bg-gray-900 transition-colors sm:h-16 sm:w-16"
             :class="index === previewIndex ? 'border-emerald-400' : 'border-transparent hover:border-white/40'"
-            :aria-label="`查看第 ${index + 1} 張成果圖`"
-            @click="previewIndex = index"
-          >
+            :aria-label="`查看第 ${index + 1} 張成果圖`" @click="previewIndex = index">
             <img :src="image.src" :alt="image.alt" class="h-full w-full object-cover object-top" />
           </button>
         </div>
