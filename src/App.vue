@@ -99,7 +99,7 @@ const skillGroups = ref([
   {
     title: 'Database',
     icon: Database,
-    skills: ['SQL Server', 'ChromaDB', '資料表設計', 'JPA / ORM', '交易控制', '資料一致性'],
+    skills: ['SQL Server', 'PostgreSQL', 'PGVector', 'ChromaDB', '資料表設計', 'JPA / ORM', '交易控制', '資料一致性'],
   },
   {
     title: 'Tools',
@@ -172,6 +172,30 @@ const projects = ref([
       {
         src: '/projects/ai-interview-coach/interview-feedback-and-next-question.png',
         alt: 'AI 面試教練顯示回答缺點、參考答案重點與下一題',
+      },
+    ],
+  },
+  {
+    name: 'AI 勞基法問答機器人｜RAG 專案',
+    summary: '串接全國法規資料庫與向量檢索，讓使用者用自然語言查詢勞動基準法相關問題。',
+    techs: ['Java 21', 'Spring Boot', 'Spring AI', 'PostgreSQL', 'PGVector', 'Vue 3'],
+    highlights: [
+      '透過全國法規資料庫 API 匯入勞動基準法條文，整理成可檢索的向量文件',
+      '使用 PGVector 進行相似度搜尋，依問題找出最相關的前 5 筆法條內容',
+      '透過 Spring AI 串接 GitHub Models 的 GPT-4.1-mini 與 Embedding 模型',
+      '回覆中附上參考條文來源，讓答案能對應到具體法規依據',
+      '以 Vue 3 製作簡潔聊天介面，支援連續對話與查詢中狀態顯示',
+    ],
+    github: 'https://github.com/sagartia/lawbot-ai',
+    demo: null,
+    previewImages: [
+      {
+        src: '/projects/ai-lawbot/lawbot-1.png',
+        alt: 'AI 勞基法問答機器人顯示使用者提問與勞基法條文回答',
+      },
+      {
+        src: '/projects/ai-lawbot/lawbot-2.png',
+        alt: 'AI 勞基法問答機器人顯示參考條文來源與聊天介面',
       },
     ],
   },
