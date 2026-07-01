@@ -111,13 +111,14 @@ const skillGroups = ref([
 const projects = ref([
   {
     name: 'C2C 電商購物平台',
-    summary: '五人團隊協作開發的全端電商專題，負責從購物車到訂單成立的完整購買流程。',
-    techs: ['Spring Boot', 'Spring Security', 'Hibernate', 'SQL Server', 'Vue.js'],
+    summary: '五人團隊協作開發的 C2C 電商平台，主責買家購買流程，並與付款、物流、賣家端訂單流程整合。',
+    techs: ['Spring Boot', 'Spring Security', 'Hibernate', 'SQL Server', 'Vue.js', 'JWT'],
     highlights: [
-      '負責購物車、優惠券、結帳與訂單模組，完成跨模組購買流程',
-      '設計並實作 25 支 RESTful API，與 Vue 前端完成資料串接',
-      '使用 @Transactional 維持結帳、庫存扣減與訂單建立的資料一致性',
-      '整合 Spring Security，限制未登入使用者操作購物車與結帳功能',
+      '主責購物車、優惠券、結帳與訂單模組，完成從加入購物車到訂單成立的核心流程',
+      '設計並串接 30+ 支 RESTful API，涵蓋購物車 CRUD、優惠券領取、結帳預覽、訂單查詢與取消',
+      '使用 @Transactional 維持結帳、庫存扣減、優惠券折抵與訂單建立的資料一致性',
+      '實作訂單明細、訂單日誌、再買一次與分頁查詢，並協作串接賣家訂單管理',
+      '整合 Spring Security / JWT，限制未登入使用者操作購物車、結帳與訂單功能',
     ],
     github: 'https://github.com/sagartia',
     demo: null,
@@ -221,9 +222,9 @@ const experiences = ref([
     location: 'Taipei, Taiwan',
     summary: '完成約 450 小時的 Java 全端訓練，學習 Java、Spring、Hibernate、SQL Server、Vue.js、Git 與 Docker。',
     highlights: [
-      '在五人團隊中負責電商平台的購物車、優惠券、結帳與訂單模組',
-      '參與 API 規格確認、Git 分支整合、跨模組測試與問題排查',
-      '透過專題實作理解交易控制、權限驗證與前後端協作流程',
+      '在五人團隊中主責電商平台的購物車、優惠券、結帳與訂單流程',
+      '參與 API 規格確認、Git 分支整合、跨模組測試、部署前修正與問題排查',
+      '透過專題實作理解交易控制、權限驗證、付款物流串接與前後端協作流程',
     ],
   },
   {
